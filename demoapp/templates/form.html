@@ -1,0 +1,14 @@
+<!-- <form action="/demoapp/getform/" method="POST">
+    {% csrf_token %}
+    <p>Name: <input type="name" name="name"></p>
+    <p>UserID :<input type="text" name="id"></p>
+    <input type="submit">
+</form> -->
+
+<!-- Example of using the url tag to obtain the URL path dynamically -->
+ <form action ="{% url 'demoapp:getform' %}" method="post">
+    {% csrf_token %}
+    <p>Name: <input type="name" name="name"></p>
+    <p>UserID :<input type="text" name="id"></p>
+    <input type="submit">
+ </form>
