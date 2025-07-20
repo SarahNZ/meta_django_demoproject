@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('demoapp/', include('demoapp.urls', namespace='demoapp')),
+    # path('demoapp/', include('demoapp.urls', namespace='demoapp')),
     path('admin/', admin.site.urls),
-    path('', include('demoapp.urls')),
-    path('myapp/', include('myapp.urls', namespace='demoapp')),
+    path('', include('myapp.urls')),
+    path('myapp/', include('myapp.urls', namespace='myapp')),
 ]
 
 handler404 = 'demoproject.views.handler404'

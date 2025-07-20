@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from .forms import DemoForm
 
 def menuitems(request, dish):
     items = {
@@ -21,11 +22,11 @@ def getform(request):
         name = request.POST['name']
     return HttpResponse(f"Name:{name} UserID: {id}")
 
-def index(request):
-    # path = request.path
-    # response = HttpResponse("Demoapp works!")
-    # return response
-    return HttpResponseNotFound(" Little Lemon ") # Should use error http responses in the project-level view.py file. I was just being lazy.
+# def index(request):
+#     # path = request.path
+#     # response = HttpResponse("Demoapp works!")
+#     # return response
+#     return HttpResponseNotFound(" Little Lemon ") # Should use error http responses in the project-level view.py file. I was just being lazy.
 
 # Using path parameters for URL http://localhost:8000/getuser/John/1
 # def pathview(request, name, id):
@@ -40,3 +41,18 @@ def index(request):
 
 # def example_view(request):
 #     return render(request, 'demoapp/form.html')
+
+from .forms import DemoForm
+
+# def index(request):
+#     form = DemoForm()
+#     return render(request, 'form.html', {'form': form})
+
+def index(request):
+    
+    if request.method == 'POST':
+        form = DemoForm(request.POST)
+        # check whether it's valid.
+        if form.is_valid():
+            # process the data
+           return HttpResponse('Form successfully submitted')
