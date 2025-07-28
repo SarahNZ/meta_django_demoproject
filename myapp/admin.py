@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Input, Person, Reservation
+from .models import Input, Person, Reservation, Menu
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 # Register your models here.
 admin.site.register(Input)
 admin.site.register(Reservation)
+admin.site.register(Menu)
+
 # admin.site.register(Person)
 
 # Unregister the provided model admin
