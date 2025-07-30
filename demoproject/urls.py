@@ -22,8 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # path('demoapp/', include('demoapp.urls', namespace='demoapp')),
     path('admin/', admin.site.urls),
-    path('', include('myapp.urls')),
-    path('myapp/', include('myapp.urls', namespace='myapp')),
+    path('', include('myapp.urls', namespace = 'myapp')),
 ]
 
 handler404 = 'demoproject.views.handler404'

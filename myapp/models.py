@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+class Employee(models.Model):
+    name = models.CharField(max_length = 100)
+    email = models.EmailField()
+    contact = models.CharField(max_length = 15)
+    class Meta:
+        db_table = "Employee"
+
 class Menu(models.Model):
     name = models.CharField(max_length = 100)
     price = models.IntegerField()
@@ -26,11 +33,13 @@ class Person(models.Model):
     # phone = models.CharField(max_length=20)
 
 class Reservation(models.Model):
-    name = models.CharField(max_length = 100, blank = True)
-    contact = models.CharField('Phone number', max_length = 100)
-    time = models.TimeField()
-    count = models.IntegerField()
-    notes = models.CharField(max_length = 300, blank = True)
+    first_name = models.CharField(max_length = 100, blank = True)
+    last_name = models.CharField(max_length = 100, null = True, blank = True, default = "Unknown")
+    booking_time = models.DateTimeField(auto_now = True)
+    # contact = models.CharField('Phone number', max_length = 100)
+    # time = models.TimeField()
+    # count = models.IntegerField()
+    # notes = models.CharField(max_length = 300, blank = True)
 
     def __str__(self):
         return self.name
