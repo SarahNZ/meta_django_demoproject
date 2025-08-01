@@ -3,19 +3,33 @@ from django.http import HttpResponse
 from myapp.forms import InputForm
 from .models import Menu, Employee
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 # Create your views here.
 
+def success(request):
+    return HttpResponse("The operation was completed successfully.")
+
+class EmployeeDelete(DeleteView):
+    model = Employee
+    template_name = "employee_confirm_delete.html"
+    success_url = "/success"
+
+class EmployeeUpdate(UpdateView):
+    model = Employee
+    fields = '__all__'
+    template_name = "employee_form.html"
+    success_url = "/success"
+
 class EmployeeDetail(DetailView):
     model = Employee
     template_name = "employee_detail.html"
+    success_url = "/success"
 
 class EmployeeList(ListView):
     model = Employee
-    # success_url = "/employees/success"
     template_name = "employee_list.html"
 
 class IndexView(TemplateView):
@@ -24,8 +38,8 @@ class IndexView(TemplateView):
 class EmployeeCreate(CreateView):
     model = Employee
     fields = '__all__'
-    # success_url = "/employees/success"
-    template_name = "employee_create.html"
+    template_name = "employee_form.html"
+    success_url = "/success"
 
 def home(request):
     return render(request, "index.html")
